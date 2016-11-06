@@ -1,0 +1,25 @@
+{
+	"keywords" : [
+		"TheTVDB",
+		"API",
+		"PHP"
+	],
+	"autoload" : {
+		"psr-4" : {
+			"NicolaMoretto\\TheTVDB\\" : "src"
+		}
+	},
+	"name" : "nicolamoretto/TheTVDB",
+	"type" : "library",
+	"description" : "PHP client for TheTVDB API v2 (https://api.thetvdb.com/)",
+	"license" : "GPL-2.0+",
+	"require" : {
+		"php" : ">=7.0",
+		"guzzlehttp/guzzle" : "~6.2"
+	},
+	"authors" : [{
+			"name" : "Nicola Moretto",
+			"email" : "n.moretto@nicolamoretto.eu"
+		}
+	]
+}
