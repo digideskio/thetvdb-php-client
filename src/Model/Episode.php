@@ -6,7 +6,7 @@ namespace NicolaMoretto\TheTVDB\Model;
  *
  * @author Nicola Moretto <n.moretto@nicolamoretto.eu>
  */
-class Episode {
+class Episode implements ModelInterface {
 	
 	/** @var int */
 	private $absoluteNumber;
@@ -80,113 +80,48 @@ class Episode {
 	/**
 	 * Return a class instance initialized with given argument
 	 *
-	 * @param object $tvdbEpisode
+	 * @param array $tvdbEpisode
 	 *        	TheTVDB episode information
 	 * @return Episode
 	 */
 	public static function createFrom($tvdbEpisode): Episode {
 		$episode = new Episode ();
-		if (property_exists ( $tvdbEpisode, 'id' )) {
-			$episode->setId ( $tvdbEpisode->id );
+		$episode->setId ( isset ( $tvdbEpisode ['id'] ) ? $tvdbEpisode ['id'] : null );
+		$episode->setAiredSeason ( isset ( $tvdbEpisode ['airedSeason'] ) ? $tvdbEpisode ['airedSeason'] : null );
+		$episode->setAiredSeasonId ( isset ( $tvdbEpisode ['airedSeasonID'] ) ? $tvdbEpisode ['airedSeasonID'] : null );
+		$episode->setAiredEpisodeNumber ( isset ( $tvdbEpisode ['airedEpisodeNumber'] ) ? $tvdbEpisode ['airedEpisodeNumber'] : null );
+		$episode->setEpisodeName ( isset ( $tvdbEpisode ['episodeName'] ) ? $tvdbEpisode ['episodeName'] : null );
+		$episode->setFirstAired ( isset ( $tvdbEpisode ['firstAired'] ) ? $tvdbEpisode ['firstAired'] : null );
+		$episode->setGuestStars ( isset ( $tvdbEpisode ['guestStars'] ) ? $tvdbEpisode ['guestStars'] : null );
+		$episode->setDirector ( isset ( $tvdbEpisode ['director'] ) ? $tvdbEpisode ['director'] : null );
+		$episode->setDirectors ( isset ( $tvdbEpisode ['directors'] ) ? $tvdbEpisode ['directors'] : null );
+		$episode->setWriters ( isset ( $tvdbEpisode ['writers'] ) ? $tvdbEpisode ['writers'] : null );
+		$episode->setOverview ( isset ( $tvdbEpisode ['overview'] ) ? $tvdbEpisode ['overview'] : null );
+		if (isset ( $tvdbEpisode ['language'] )) {
+			$episode->setOverviewLanguage ( isset ( $tvdbEpisode ['language'] ['overview'] ) ? $tvdbEpisode ['language'] ['overview'] : null );
+			$episode->setEpisodeNameLanguage ( isset ( $tvdbEpisode ['language'] ['episodeName'] ) ? $tvdbEpisode ['language'] ['episodeName'] : null );
 		}
-		if (property_exists ( $tvdbEpisode, 'airedSeason' )) {
-			$episode->setAiredSeason ( $tvdbEpisode->airedSeason );
-		}
-		if (property_exists ( $tvdbEpisode, 'airedSeasonID' )) {
-			$episode->setAiredSeasonId ( $tvdbEpisode->airedSeasonID );
-		}
-		if (property_exists ( $tvdbEpisode, 'airedEpisodeNumber' )) {
-			$episode->setAiredEpisodeNumber ( $tvdbEpisode->airedEpisodeNumber );
-		}
-		if (property_exists ( $tvdbEpisode, 'episodeName' )) {
-			$episode->setEpisodeName ( $tvdbEpisode->episodeName );
-		}
-		if (property_exists ( $tvdbEpisode, 'firstAired' )) {
-			$episode->setFirstAired ( $tvdbEpisode->firstAired );
-		}
-		if (property_exists ( $tvdbEpisode, 'guestStars' )) {
-			$episode->setGuestStars ( $tvdbEpisode->guestStars );
-		}
-		if (property_exists ( $tvdbEpisode, 'director' )) {
-			$episode->setDirector ( $tvdbEpisode->director );
-		}
-		if (property_exists ( $tvdbEpisode, 'directors' )) {
-			$episode->setDirectors ( $tvdbEpisode->directors );
-		}
-		if (property_exists ( $tvdbEpisode, 'writers' )) {
-			$episode->setWriters ( $tvdbEpisode->writers );
-		}
-		if (property_exists ( $tvdbEpisode, 'overview' )) {
-			$episode->setOverview ( $tvdbEpisode->overview );
-		}
-		if (property_exists ( $tvdbEpisode, 'language' ) && ! is_null ( $tvdbEpisode->language )) {
-			$episode->setOverviewLanguage ( $tvdbEpisode->language->overview );
-			$episode->setEpisodeNameLanguage ( $tvdbEpisode->language->episodeName );
-		}
-		if (property_exists ( $tvdbEpisode, 'productionCode' )) {
-			$episode->setProductionCode ( $tvdbEpisode->productionCode );
-		}
-		if (property_exists ( $tvdbEpisode, 'showUrl' )) {
-			$episode->setShowUrl ( $tvdbEpisode->showUrl );
-		}
-		if (property_exists ( $tvdbEpisode, 'lastUpdated' )) {
-			$episode->setLastUpdated ( $tvdbEpisode->lastUpdated );
-		}
-		if (property_exists ( $tvdbEpisode, 'dvdDiscid' )) {
-			$episode->setDvdDiscid ( $tvdbEpisode->dvdDiscid );
-		}
-		if (property_exists ( $tvdbEpisode, 'dvdSeason' )) {
-			$episode->setDvdSeason ( $tvdbEpisode->dvdSeason );
-		}
-		if (property_exists ( $tvdbEpisode, 'dvdEpisodeNumber' )) {
-			$episode->setDvdEpisodeNumber ( $tvdbEpisode->dvdEpisodeNumber );
-		}
-		if (property_exists ( $tvdbEpisode, 'dvdChapter' )) {
-			$episode->setDvdChapter ( $tvdbEpisode->dvdChapter );
-		}
-		if (property_exists ( $tvdbEpisode, 'absoluteNumber' )) {
-			$episode->setAbsoluteNumber ( $tvdbEpisode->absoluteNumber );
-		}
-		if (property_exists ( $tvdbEpisode, 'filename' )) {
-			$episode->setFilename ( $tvdbEpisode->filename );
-		}
-		if (property_exists ( $tvdbEpisode, 'seriesId' )) {
-			$episode->setSeriesId ( $tvdbEpisode->seriesId );
-		}
-		if (property_exists ( $tvdbEpisode, 'lastUpdatedBy' )) {
-			$episode->setLastUpdatedBy ( $tvdbEpisode->lastUpdatedBy );
-		}
-		if (property_exists ( $tvdbEpisode, 'airsAfterSeason' )) {
-			$episode->setAirsAfterSeason ( $tvdbEpisode->airsAfterSeason );
-		}
-		if (property_exists ( $tvdbEpisode, 'airsBeforeSeason' )) {
-			$episode->setAirsBeforeSeason ( $tvdbEpisode->airsBeforeSeason );
-		}
-		if (property_exists ( $tvdbEpisode, 'airsBeforeEpisode' )) {
-			$episode->setAirsBeforeEpisode ( $tvdbEpisode->airsBeforeEpisode );
-		}
-		if (property_exists ( $tvdbEpisode, 'thumbAuthor' )) {
-			$episode->setThumbAuthor ( $tvdbEpisode->thumbAuthor );
-		}
-		if (property_exists ( $tvdbEpisode, 'thumbAdded' )) {
-			$episode->setThumbAdded ( $tvdbEpisode->thumbAdded );
-		}
-		if (property_exists ( $tvdbEpisode, 'thumbWidth' )) {
-			$episode->setThumbWidth ( $tvdbEpisode->thumbWidth );
-		}
-		if (property_exists ( $tvdbEpisode, 'thumbHeight' )) {
-			$episode->setThumbHeight ( $tvdbEpisode->thumbHeight );
-		}
-		if (property_exists ( $tvdbEpisode, 'imdbId' )) {
-			$episode->setImdbId ( $tvdbEpisode->imdbId );
-		}
-		if (property_exists ( $tvdbEpisode, 'siteRating' )) {
-			$episode->setSiteRating ( $tvdbEpisode->siteRating );
-		}
-		if (property_exists ( $tvdbEpisode, 'siteRatingCount' )) {
-			$episode->setSiteRatingCount ( $tvdbEpisode->siteRatingCount );
-		}
-		// TODO Implement mapping with has_property check
+		$episode->setProductionCode ( isset ( $tvdbEpisode ['productionCode'] ) ? $tvdbEpisode ['productionCode'] : null );
+		$episode->setShowUrl ( isset ( $tvdbEpisode ['showUrl'] ) ? $tvdbEpisode ['showUrl'] : null );
+		$episode->setLastUpdated ( isset ( $tvdbEpisode ['lastUpdated'] ) ? $tvdbEpisode ['lastUpdated'] : null );
+		$episode->setDvdDiscId ( isset ( $tvdbEpisode ['dvdDiscid'] ) ? $tvdbEpisode ['dvdDiscid'] : null );
+		$episode->setDvdSeason ( isset ( $tvdbEpisode ['dvdSeason'] ) ? $tvdbEpisode ['dvdSeason'] : null );
+		$episode->setDvdEpisodeNumber ( isset ( $tvdbEpisode ['dvdEpisodeNumber'] ) ? $tvdbEpisode ['dvdEpisodeNumber'] : null );
+		$episode->setDvdChapter ( isset ( $tvdbEpisode ['dvdChapter'] ) ? $tvdbEpisode ['dvdChapter'] : null );
+		$episode->setAbsoluteNumber ( isset ( $tvdbEpisode ['absoluteNumber'] ) ? $tvdbEpisode ['absoluteNumber'] : null );
+		$episode->setFilename ( isset ( $tvdbEpisode ['filename'] ) ? $tvdbEpisode ['filename'] : null );
+		$episode->setSeriesId ( isset ( $tvdbEpisode ['seriesId'] ) ? $tvdbEpisode ['seriesId'] : null );
+		$episode->setLastUpdatedBy ( isset ( $tvdbEpisode ['lastUpdatedBy'] ) ? $tvdbEpisode ['lastUpdatedBy'] : null );
+		$episode->setAirsAfterSeason ( isset ( $tvdbEpisode ['airsAfterSeason'] ) ? $tvdbEpisode ['airsAfterSeason'] : null );
+		$episode->setAirsBeforeSeason ( isset ( $tvdbEpisode ['airsBeforeSeason'] ) ? $tvdbEpisode ['airsBeforeSeason'] : null );
+		$episode->setAirsBeforeEpisode ( isset ( $tvdbEpisode ['airsBeforeEpisode'] ) ? $tvdbEpisode ['airsBeforeEpisode'] : null );
+		$episode->setThumbAuthor ( isset ( $tvdbEpisode ['thumbAuthor'] ) ? $tvdbEpisode ['thumbAuthor'] : null );
+		$episode->setThumbAdded ( isset ( $tvdbEpisode ['thumbAdded'] ) ? $tvdbEpisode ['thumbAdded'] : null );
+		$episode->setThumbWidth ( isset ( $tvdbEpisode ['thumbWidth'] ) ? $tvdbEpisode ['thumbWidth'] : null );
+		$episode->setThumbHeight ( isset ( $tvdbEpisode ['thumbHeight'] ) ? $tvdbEpisode ['thumbHeight'] : null );
+		$episode->setImdbId ( isset ( $tvdbEpisode ['imdbId'] ) ? $tvdbEpisode ['imdbId'] : null );
+		$episode->setSiteRating ( isset ( $tvdbEpisode ['siteRating'] ) ? $tvdbEpisode ['siteRating'] : null );
+		$episode->setSiteRatingCount ( isset ( $tvdbEpisode ['siteRatingCount'] ) ? $tvdbEpisode ['siteRatingCount'] : null );
 		return $episode;
 	}
 	

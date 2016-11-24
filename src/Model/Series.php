@@ -6,7 +6,7 @@ namespace NicolaMoretto\TheTVDB\Model;
  *
  * @author Nicola Moretto <n.moretto@nicolamoretto.eu>
  */
-class Series {
+class Series implements ModelInterface {
 	
 	/** @var int */
 	private $id;
@@ -56,78 +56,34 @@ class Series {
 	/**
 	 * Return a class instance initialized with given argument
 	 *
-	 * @param object $tvdbSeries
+	 * @param array $tvdbSeries
 	 *        	TheTVDB series information
 	 * @return Series
 	 */
 	public static function createFrom($tvdbSeries): Series {
 		$series = new Series ();
-		if (property_exists ( $tvdbSeries, 'id' )) {
-			$series->setId ( $tvdbSeries->id );
-		}
-		if (property_exists ( $tvdbSeries, 'seriesName' )) {
-			$series->setSeriesName ( $tvdbSeries->seriesName );
-		}
-		if (property_exists ( $tvdbSeries, 'aliases' )) {
-			$series->setAliases ( $tvdbSeries->aliases );
-		}
-		if (property_exists ( $tvdbSeries, 'banner' )) {
-			$series->setBanner ( $tvdbSeries->banner );
-		}
-		if (property_exists ( $tvdbSeries, 'seriesId' )) {
-			$series->setSeriesId ( $tvdbSeries->seriesId );
-		}
-		if (property_exists ( $tvdbSeries, 'status' )) {
-			$series->setStatus ( $tvdbSeries->status );
-		}
-		if (property_exists ( $tvdbSeries, 'firstAired' )) {
-			$series->setFirstAired ( $tvdbSeries->firstAired );
-		}
-		if (property_exists ( $tvdbSeries, 'network' )) {
-			$series->setNetwork ( $tvdbSeries->network );
-		}
-		if (property_exists ( $tvdbSeries, 'networkId' )) {
-			$series->setNetworkId ( $tvdbSeries->networkId );
-		}
-		if (property_exists ( $tvdbSeries, 'runtime' )) {
-			$series->setRuntime ( $tvdbSeries->runtime );
-		}
-		if (property_exists ( $tvdbSeries, 'genre' )) {
-			$series->setGenre ( $tvdbSeries->genre );
-		}
-		if (property_exists ( $tvdbSeries, 'overview' )) {
-			$series->setOverview ( $tvdbSeries->overview );
-		}
-		if (property_exists ( $tvdbSeries, 'lastUpdated' )) {
-			$series->setLastUpdated ( $tvdbSeries->lastUpdated );
-		}
-		if (property_exists ( $tvdbSeries, 'airsDayOfWeek' )) {
-			$series->setAirsDayOfWeek ( $tvdbSeries->airsDayOfWeek );
-		}
-		if (property_exists ( $tvdbSeries, 'airsTime' )) {
-			$series->setAirsTime ( $tvdbSeries->airsTime );
-		}
-		if (property_exists ( $tvdbSeries, 'rating' )) {
-			$series->setRating ( $tvdbSeries->rating );
-		}
-		if (property_exists ( $tvdbSeries, 'imdbId' )) {
-			$series->setImdbId ( $tvdbSeries->imdbId );
-		}
-		if (property_exists ( $tvdbSeries, 'zap2itId' )) {
-			$series->setZap2itId ( $tvdbSeries->zap2itId );
-		}
-		if (property_exists ( $tvdbSeries, 'added' )) {
-			$series->setAdded ( $tvdbSeries->added );
-		}
-		if (property_exists ( $tvdbSeries, 'addedBy' )) {
-			$series->setAddedBy ( $tvdbSeries->addedBy );
-		}
-		if (property_exists ( $tvdbSeries, 'siteRating' )) {
-			$series->setSiteRating ( $tvdbSeries->siteRating );
-		}
-		if (property_exists ( $tvdbSeries, 'siteRatingCount' )) {
-			$series->setSiteRatingCount ( $tvdbSeries->siteRatingCount );
-		}
+		$series->setId ( isset ( $tvdbSeries ['id'] ) ? $tvdbSeries ['id'] : null );
+		$series->setSeriesName ( isset ( $tvdbSeries ['seriesName'] ) ? $tvdbSeries ['seriesName'] : null );
+		$series->setAliases ( isset ( $tvdbSeries ['aliases'] ) ? $tvdbSeries ['aliases'] : null );
+		$series->setBanner ( isset ( $tvdbSeries ['banner'] ) ? $tvdbSeries ['banner'] : null );
+		$series->setSeriesId ( isset ( $tvdbSeries ['seriesId'] ) ? $tvdbSeries ['seriesId'] : null );
+		$series->setStatus ( isset ( $tvdbSeries ['status'] ) ? $tvdbSeries ['status'] : null );
+		$series->setFirstAired ( isset ( $tvdbSeries ['firstAired'] ) ? $tvdbSeries ['firstAired'] : null );
+		$series->setNetwork ( isset ( $tvdbSeries ['network'] ) ? $tvdbSeries ['network'] : null );
+		$series->setNetworkId ( isset ( $tvdbSeries ['networkId'] ) ? $tvdbSeries ['networkId'] : null );
+		$series->setRuntime ( isset ( $tvdbSeries ['runtime'] ) ? $tvdbSeries ['runtime'] : null );
+		$series->setGenre ( isset ( $tvdbSeries ['genre'] ) ? $tvdbSeries ['genre'] : null );
+		$series->setOverview ( isset ( $tvdbSeries ['overview'] ) ? $tvdbSeries ['overview'] : null );
+		$series->setLastUpdated ( isset ( $tvdbSeries ['lastUpdated'] ) ? $tvdbSeries ['lastUpdated'] : null );
+		$series->setAirsDayOfWeek ( isset ( $tvdbSeries ['airsDayOfWeek'] ) ? $tvdbSeries ['airsDayOfWeek'] : null );
+		$series->setAirsTime ( isset ( $tvdbSeries ['airsTime'] ) ? $tvdbSeries ['airsTime'] : null );
+		$series->setRating ( isset ( $tvdbSeries ['rating'] ) ? $tvdbSeries ['rating'] : null );
+		$series->setImdbId ( isset ( $tvdbSeries ['imdbId'] ) ? $tvdbSeries ['imdbId'] : null );
+		$series->setZap2itId ( isset ( $tvdbSeries ['zap2itId'] ) ? $tvdbSeries ['zap2itId'] : null );
+		$series->setAdded ( isset ( $tvdbSeries ['added'] ) ? $tvdbSeries ['added'] : null );
+		$series->setAddedBy ( isset ( $tvdbSeries ['addedBy'] ) ? $tvdbSeries ['addedBy'] : null );
+		$series->setSiteRating ( isset ( $tvdbSeries ['siteRating'] ) ? $tvdbSeries ['siteRating'] : null );
+		$series->setSiteRatingCount ( isset ( $tvdbSeries ['siteRatingCount'] ) ? $tvdbSeries ['siteRatingCount'] : null );
 		return $series;
 	}
 	

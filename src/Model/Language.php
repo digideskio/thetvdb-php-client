@@ -6,7 +6,7 @@ namespace NicolaMoretto\TheTVDB\Model;
  *
  * @author Nicola Moretto <n.moretto@nicolamoretto.eu>
  */
-class Language {
+class Language implements ModelInterface {
 	
 	/** @var int */
 	private $id;
@@ -20,22 +20,22 @@ class Language {
 	/**
 	 * Return a class instance initialized with given argument
 	 *
-	 * @param object $tvdbLanguage
+	 * @param array $tvdbLanguage
 	 *        	TheTVDB language object
 	 * @return Language
 	 */
 	public static function createFrom($tvdbLanguage): Language {
-		$lang = new Language();
-		$lang->setId($tvdbLanguage->id);
-		$lang->setAbbreviation($tvdbLanguage->abbreviation);
-		$lang->setName($tvdbLanguage->name);
-		$lang->setEnglishName($tvdbLanguage->englishName);
+		$lang = new Language ();
+		$lang->setId ( isset ( $tvdbLanguage ['id'] ) ? $tvdbLanguage ['id'] : null );
+		$lang->setAbbreviation ( isset ( $tvdbLanguage ['abbreviation'] ) ? $tvdbLanguage ['abbreviation'] : null );
+		$lang->setName ( isset ( $tvdbLanguage ['name'] ) ? $tvdbLanguage ['name'] : null );
+		$lang->setEnglishName ( isset ( $tvdbLanguage ['englishName'] ) ? $tvdbLanguage ['englishName'] : null );
 		return $lang;
 	}
 	
 	/**
 	 * Return ID
-	 * 
+	 *
 	 * @return int ID
 	 */
 	public function getId(): int {
@@ -44,7 +44,7 @@ class Language {
 	
 	/**
 	 * Set ID
-	 * 
+	 *
 	 * @param int $id
 	 *        	ID
 	 * @return \NicolaMoretto\TheTVDB\Model\Language
@@ -56,7 +56,7 @@ class Language {
 	
 	/**
 	 * Return abbreviation
-	 * 
+	 *
 	 * @return string Abbreviation
 	 */
 	public function getAbbreviation(): string {
@@ -65,7 +65,7 @@ class Language {
 	
 	/**
 	 * Set abbreviation
-	 * 
+	 *
 	 * @param string $abbreviation
 	 *        	Abbreviation
 	 * @return \NicolaMoretto\TheTVDB\Model\Language
@@ -77,7 +77,7 @@ class Language {
 	
 	/**
 	 * Return localized name
-	 * 
+	 *
 	 * @return string Localized name
 	 */
 	public function getName(): string {
@@ -86,7 +86,7 @@ class Language {
 	
 	/**
 	 * Set localized name
-	 * 
+	 *
 	 * @param string $name
 	 *        	Localized name
 	 * @return \NicolaMoretto\TheTVDB\Model\Language
@@ -98,7 +98,7 @@ class Language {
 	
 	/**
 	 * Return English name
-	 * 
+	 *
 	 * @return string English name
 	 */
 	public function getEnglishName(): string {
@@ -107,7 +107,7 @@ class Language {
 	
 	/**
 	 * Set English name
-	 * 
+	 *
 	 * @param string $englishName
 	 *        	English name
 	 * @return Language

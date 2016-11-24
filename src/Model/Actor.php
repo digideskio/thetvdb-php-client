@@ -6,7 +6,7 @@ namespace NicolaMoretto\TheTVDB\Model;
  *
  * @author Nicola Moretto <n.moretto@nicolamoretto.eu>
  */
-class Actor {
+class Actor implements ModelInterface {
 	
 	/** @var int */
 	private $id;
@@ -30,39 +30,21 @@ class Actor {
 	/**
 	 * Return a class instance initialized with given argument
 	 *
-	 * @param object $tvdbAuthor
+	 * @param array $tvdbAuthor
 	 *        	TheTVDB actor information
 	 * @return Actor
 	 */
 	public static function createFrom($tvdbAuthor): Actor {
 		$actor = new Actor ();
-		if (property_exists ( $tvdbAuthor, 'id' )) {
-			$actor->setId ( $tvdbAuthor->id );
-		}
-		if (property_exists ( $tvdbAuthor, 'seriesId' )) {
-			$actor->setSeriesId ( $tvdbAuthor->seriesId );
-		}
-		if (property_exists ( $tvdbAuthor, 'name' )) {
-			$actor->setName ( $tvdbAuthor->name );
-		}
-		if (property_exists ( $tvdbAuthor, 'role' )) {
-			$actor->setRole ( $tvdbAuthor->role );
-		}
-		if (property_exists ( $tvdbAuthor, 'sortOrder' )) {
-			$actor->setSortOrder ( $tvdbAuthor->sortOrder );
-		}
-		if (property_exists ( $tvdbAuthor, 'image' )) {
-			$actor->setImage ( $tvdbAuthor->image );
-		}
-		if (property_exists ( $tvdbAuthor, 'imageAuthor' )) {
-			$actor->setImageAuthor ( $tvdbAuthor->imageAuthor );
-		}
-		if (property_exists ( $tvdbAuthor, 'imageAdded' )) {
-			$actor->setImageAdded ( $tvdbAuthor->imageAdded );
-		}
-		if (property_exists ( $tvdbAuthor, 'lastUpdated' )) {
-			$actor->setLastUpdated ( $tvdbAuthor->lastUpdated );
-		}
+		$actor->setId ( isset ( $tvdbAuthor ['id'] ) ? $tvdbAuthor ['id'] : null );
+		$actor->setSeriesId ( isset ( $tvdbAuthor ['seriesId'] ) ? $tvdbAuthor ['seriesId'] : null );
+		$actor->setName ( isset ( $tvdbAuthor ['name'] ) ? $tvdbAuthor ['name'] : null );
+		$actor->setRole ( isset ( $tvdbAuthor ['role'] ) ? $tvdbAuthor ['role'] : null );
+		$actor->setSortOrder ( isset ( $tvdbAuthor ['sortOrder'] ) ? $tvdbAuthor ['sortOrder'] : null );
+		$actor->setImage ( isset ( $tvdbAuthor ['image'] ) ? $tvdbAuthor ['image'] : null );
+		$actor->setImageAuthor ( isset ( $tvdbAuthor ['imageAuthor'] ) ? $tvdbAuthor ['imageAuthor'] : null );
+		$actor->setImageAdded ( isset ( $tvdbAuthor ['imageAdded'] ) ? $tvdbAuthor ['imageAdded'] : null );
+		$actor->setLastUpdated ( isset ( $tvdbAuthor ['lastUpdated'] ) ? $tvdbAuthor ['lastUpdated'] : null );
 		return $actor;
 	}
 	
