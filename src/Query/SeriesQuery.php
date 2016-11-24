@@ -2,8 +2,10 @@
 
 namespace NicolaMoretto\TheTVDB\Query;
 
+use NicolaMoretto\TheTVDB\Model\Series;
+
 /**
- * 
+ *
  * @author Nicola Moretto<n.moretto@nicolamoretto.eu>
  */
 class SeriesQuery implements QueryInterface {
@@ -16,22 +18,40 @@ class SeriesQuery implements QueryInterface {
 	private $zap2itId;
 	
 	/**
-	 * 
-	 * {@inheritDoc}
+	 *
+	 * {@inheritdoc}
+	 *
 	 * @see \NicolaMoretto\TheTVDB\Query\QueryInterface::toArray()
 	 */
 	public function toArray(): array {
-		$params = [];
-		if (!is_null($this->name) && mb_strlen($this->name) > 0) {
-			$params['name'] = trim($this->name);
+		$params = [ ];
+		if (! is_null ( $this->name ) && mb_strlen ( $this->name ) > 0) {
+			$params ['name'] = trim ( $this->name );
 		}
-		if (!is_null($this->imdbId) && mb_strlen($this->imdbId) > 0) {
-			$params['imdbId'] = trim($this->imdbId);
+		if (! is_null ( $this->imdbId ) && mb_strlen ( $this->imdbId ) > 0) {
+			$params ['imdbId'] = trim ( $this->imdbId );
 		}
-		if (!is_null($this->zap2itId) && mb_strlen($this->zap2itId) > 0) {
-			$params['zap2itId'] = trim($this->zap2itId);
+		if (! is_null ( $this->zap2itId ) && mb_strlen ( $this->zap2itId ) > 0) {
+			$params ['zap2itId'] = trim ( $this->zap2itId );
 		}
 		return $params;
+	}
+	
+	/**
+	 *
+	 * {@inheritdoc}
+	 *
+	 * @see \NicolaMoretto\TheTVDB\Query\QueryInterface::from()
+	 */
+	public function from(Series $entity): SeriesQuery {
+		if (is_null ( $entity ) || ! ($entity instanceof Series)) {
+			throw new \InvalidArgumentException ();
+		}
+		$query = new SeriesQuery ();
+		$query->setName ( $entity->getSeriesName () );
+		$query->setImdbId ( $entity->getImdbId () );
+		$query->setZap2itId ( $entity->getZap2itId () );
+		return $query;
 	}
 	
 	/**
@@ -87,5 +107,4 @@ class SeriesQuery implements QueryInterface {
 		$this->zap2itId = $zap2itId;
 		return $this;
 	}
-	
 }
