@@ -40,10 +40,10 @@ class SeriesQuery implements QueryInterface {
 	/**
 	 *
 	 * {@inheritdoc}
-	 *
-	 * @see \NicolaMoretto\TheTVDB\Query\QueryInterface::from()
+	 * @param $entity Series
+	 * @see \NicolaMoretto\TheTVDB\Query\QueryInterface::createFrom()
 	 */
-	public function from(Series $entity): SeriesQuery {
+	public static function createFrom($entity): SeriesQuery {
 		if (is_null ( $entity ) || ! ($entity instanceof Series)) {
 			throw new \InvalidArgumentException ();
 		}

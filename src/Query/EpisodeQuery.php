@@ -57,9 +57,10 @@ class EpisodeQuery implements QueryInterface {
 	 *
 	 * {@inheritdoc}
 	 *
+	 * @param $entity Episode
 	 * @see \NicolaMoretto\TheTVDB\Query\QueryInterface::from()
 	 */
-	public function from(Episode $entity): EpisodeQuery {
+	public static function createFrom($entity): EpisodeQuery {
 		if (is_null ( $entity ) || ! ($entity instanceof Episode)) {
 			throw new \InvalidArgumentException ();
 		}

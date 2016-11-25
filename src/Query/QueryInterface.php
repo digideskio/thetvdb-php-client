@@ -24,5 +24,5 @@ interface QueryInterface {
 	 *        	Instance of a model
 	 * @return \QueryInterface Query based on the fields of an instance
 	 */
-	public function from(ModelInterface $entity): QueryInterface;
+	public static function createFrom($entity);
 }
