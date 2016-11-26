@@ -84,7 +84,7 @@ class Episode implements ModelInterface {
 	 *        	TheTVDB episode information
 	 * @return Episode
 	 */
-	public static function createFrom($tvdbEpisode): Episode {
+	public static function createFrom(array $tvdbEpisode): Episode {
 		$episode = new Episode ();
 		$episode->setId ( isset ( $tvdbEpisode ['id'] ) ? $tvdbEpisode ['id'] : null );
 		$episode->setAiredSeason ( isset ( $tvdbEpisode ['airedSeason'] ) ? $tvdbEpisode ['airedSeason'] : null );

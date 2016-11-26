@@ -60,7 +60,7 @@ class Series implements ModelInterface {
 	 *        	TheTVDB series information
 	 * @return Series
 	 */
-	public static function createFrom($tvdbSeries): Series {
+	public static function createFrom(array $tvdbSeries): Series {
 		$series = new Series ();
 		$series->setId ( isset ( $tvdbSeries ['id'] ) ? $tvdbSeries ['id'] : null );
 		$series->setSeriesName ( isset ( $tvdbSeries ['seriesName'] ) ? $tvdbSeries ['seriesName'] : null );

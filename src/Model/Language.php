@@ -24,7 +24,7 @@ class Language implements ModelInterface {
 	 *        	TheTVDB language object
 	 * @return Language
 	 */
-	public static function createFrom($tvdbLanguage): Language {
+	public static function createFrom(array $tvdbLanguage): Language {
 		$lang = new Language ();
 		$lang->setId ( isset ( $tvdbLanguage ['id'] ) ? $tvdbLanguage ['id'] : null );
 		$lang->setAbbreviation ( isset ( $tvdbLanguage ['abbreviation'] ) ? $tvdbLanguage ['abbreviation'] : null );

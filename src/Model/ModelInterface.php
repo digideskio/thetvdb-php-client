@@ -15,5 +15,5 @@ interface ModelInterface {
 	 *        	Associative array containing all information about a TheTVDB entity
 	 * @return ModelInterface Return an instance of the class representing the given TheTVDB entity
 	 */
-	public static function createFrom($tvdbData);
+	public static function createFrom(array $tvdbData);
 }

@@ -34,7 +34,7 @@ class Actor implements ModelInterface {
 	 *        	TheTVDB actor information
 	 * @return Actor
 	 */
-	public static function createFrom($tvdbAuthor): Actor {
+	public static function createFrom(array $tvdbAuthor): Actor {
 		$actor = new Actor ();
 		$actor->setId ( isset ( $tvdbAuthor ['id'] ) ? $tvdbAuthor ['id'] : null );
 		$actor->setSeriesId ( isset ( $tvdbAuthor ['seriesId'] ) ? $tvdbAuthor ['seriesId'] : null );
